@@ -98,6 +98,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/textures\/photos\/basement2.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1.279e+06,
+		"inputAbbreviatedPath": "\/textures\/photos\/basement2.jpg",
+		"outputAbbreviatedPath": "\/textures\/photos\/basement2.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/textures\/photos\/desk.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
