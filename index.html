@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Cardboard Example</title>
+    <title>Escape the VRoom</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
@@ -9,7 +9,7 @@
         margin: 0px;
         overflow: hidden;
       }
-      #example {
+      #container {
         position: absolute;
         top: 0;
         left: 0;
@@ -19,7 +19,7 @@
     </style>
   </head>
   <body>
-    <div id="example"></div>
+    <div id="container"></div>
 
   <script src="js/third-party/threejs/three.js"></script>
   <script src="js/third-party/threejs/StereoEffect.js"></script>
@@ -39,7 +39,7 @@
     function init() {
       renderer = new THREE.WebGLRenderer();
       element = renderer.domElement;
-      container = document.getElementById('example');
+      container = document.getElementById('container');
       container.appendChild(element);
 
       effect = new THREE.StereoEffect(renderer);
