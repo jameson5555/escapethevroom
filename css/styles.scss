@@ -1,0 +1,31 @@
+@import 'bourbon';
+
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#vr-toggle {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+button {
+  background: transparent;
+  padding: 0;
+  @include size(40px);
+  outline: none;
+  border: none;
+  svg {
+  	pointer-events: none;
+  }
+  &.active {
+  	color: #fff;
+  }
+}
