@@ -11,7 +11,7 @@
       <button id='vr-toggle'><img class='icon' src='icons/stereoscope.svg'/></button>
     </div>
 
-  <script src="js/third-party/threejs/three.js"></script>
+  <script src="js/third-party/threejs/min/three-min.js"></script>
   <script src="js/third-party/threejs/StereoEffect.js"></script>
   <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
   <script src="js/third-party/threejs/OrbitControls.js"></script>
@@ -89,10 +89,8 @@
     vrToggle = document.getElementById('vr-toggle');
     vrToggle.addEventListener('click', toggleVr, false);
 
-    // Elements to inject
+    // inject svg's into dom
     var mySVGsToInject = document.querySelectorAll('img.icon');
-
-    // Do the injection
     SVGInjector(mySVGsToInject);
 
   }
