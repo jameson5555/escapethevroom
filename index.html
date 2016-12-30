@@ -23,6 +23,9 @@
   var element, container;
 
   var clock = new THREE.Clock();
+  var loader = new THREE.TextureLoader();
+  var raycaster = new THREE.Raycaster(); // create once
+  var mouse = new THREE.Vector2(); // create once
 
   init();
   animate();
@@ -40,6 +43,8 @@
     camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
     camera.position.set(0, 10, 0);
     scene.add(camera);
+
+    var yellowCircle = addCircle();
 
     controls = new THREE.OrbitControls(camera, element);
     controls.rotateUp(Math.PI / 4);
@@ -66,19 +71,14 @@
     }
     window.addEventListener('deviceorientation', setOrientationControls, true);
 
-
-    var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
-    scene.add(light);
-
     var material = new THREE.MeshBasicMaterial({
-      map: THREE.ImageUtils.loadTexture('textures/photos/basement2.jpg')
+      map: loader.load('textures/photos/basement2.jpg')
     });
 
     //var geometry = new THREE.PlaneGeometry(1000, 1000);
     var geometry = new THREE.SphereGeometry(100, 32, 32);
 
     var mesh = new THREE.Mesh(geometry, material);
-    //mesh.rotation.x = -Math.PI / 2;
     mesh.scale.x = -1;
     scene.add(mesh);
 
@@ -92,6 +92,31 @@
     // inject svg's into dom
     var mySVGsToInject = document.querySelectorAll('img.icon');
     SVGInjector(mySVGsToInject);
+
+
+    window.addEventListener('click', function(e) {
+      console.log('event:',event);
+      mouse.x = ( event.clientX / renderer.domElement.width ) * 2 - 1;
+      mouse.y = - ( event.clientY / renderer.domElement.height ) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+
+      var items = [];
+      for (var i = 0; i < scene.children.length; i++) {
+        if (scene.children[i].name) {
+          items.push(scene.children[i]);
+        }
+      }
+      console.log('childrens',scene.children);
+      console.log("items:",items);
+      var intersects = raycaster.intersectObjects(items);
+      console.log('intersects:',intersects);
+      for (var i = 0; i < intersects.length; i++) {
+        intersects[i].object.material.color.set(0xff0000);
+      }
+    }, false);
+      
+
 
   }
 
@@ -142,6 +167,22 @@
     } else {
       effect = renderer;
     }
+  }
+
+  function addCircle() {
+    var radius = 3,
+    segments = 32,
+    material = new THREE.LineBasicMaterial( { color: 0xffff00 } ),
+    geometry = new THREE.CircleGeometry( radius, segments ),
+    circle = new THREE.Line( geometry, material );
+    geometry.vertices.shift();
+    circle.castShadow = true;
+
+    circle.position.set(7, 9, -1.8); // back/forward, down/up, left/right
+    circle.rotation.set(0, 2, 0); // twist
+    circle.scale.set(.1, .1, .1);
+    circle.name = 'yellowCircle';
+    scene.add(circle);
   }
 
   

@@ -22,6 +22,7 @@ button {
   @include size(40px);
   outline: none;
   border: none;
+  cursor: pointer;
   svg {
   	pointer-events: none;
   }
